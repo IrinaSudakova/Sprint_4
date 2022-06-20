@@ -1,8 +1,6 @@
 import io.qameta.allure.Step;
-import jdk.jfr.Description;
 import org.junit.Assert;
 import org.junit.Test;
-import io.qameta.allure.junit4.DisplayName;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -16,7 +14,7 @@ public class PraktikumTest {
         this.expectedCheckNameToEmboss = expectedCheckNameToEmboss;
     }
 
-    @Parameterized.Parameters (name = "{index}:  CardHolderName: {0}, expected: {1}")
+    @Parameterized.Parameters(name = "{index}:  CardHolderName: {0}, expected: {1}")
     public static Object[][] dataForTest() {
         return new Object[][]{
                 {"Ирина Иванова", true},
@@ -30,6 +28,8 @@ public class PraktikumTest {
                 {"ИЛ", false},
                 {"Ирина ЛучшаяПрелучш", true},
                 {"Ирина ЛучшаяПрелучшя", false},
+                {"", false},
+                {null, false},
         };
     }
 
@@ -42,9 +42,9 @@ public class PraktikumTest {
     private Account createAccount() {
         return new Account(name);
     }
-    @Step("Проверить строку '{account.name}'")
+
+    @Step("Проверка <" + "{account.name}" + "> для эмбоссирования")
     private void assertString(Account account) {
         Assert.assertEquals(expectedCheckNameToEmboss, account.checkNameToEmboss());
-
     }
 }
