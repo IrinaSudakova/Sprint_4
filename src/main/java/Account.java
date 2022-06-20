@@ -1,8 +1,10 @@
 public class Account {
     private final String name;
+    private final boolean checkName;
 
     public Account(String name) {
         this.name = name;
+        this.checkName = checkNameToEmboss();
     }
 
     public boolean checkNameToEmboss() {
@@ -14,8 +16,9 @@ public class Account {
             return false;
         }
     }
+
     @Override
     public String toString() {
-        return "name = '" + name + '\'';
+        return "for name = '" + name + '\'' + " checkNameToEmboss() is " + checkName;
     }
 }
